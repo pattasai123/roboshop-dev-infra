@@ -23,7 +23,7 @@ resource "aws_instance" "mongodb_host" {
   connection {
     type        = "ssh"
     user        = "ec2-user"
-    password = "DevOps321"
+    password    = "DevOps321"
     host        = aws_instance.mongodb_host.private_ip
   }
 
