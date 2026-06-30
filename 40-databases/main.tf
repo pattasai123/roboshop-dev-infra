@@ -16,14 +16,15 @@ resource "aws_instance" "mongodb_host" {
 
  resource "null_resource" "cluster" {
  
-  triggers_replace = [
-    aws_instance.web.id
-  ]
+  triggers = {
+    instance_id = aws_instance.mongodb-host.id
+  }
+
   connection {
     type        = "ssh"
     user        = "ec2-user"
     password = "DevOps321"
-    host        = aws_instance.mongodb-host.private_ip
+    host        = aws_instance.mongodb_host.private_ip
   }
 
   provisioner "remote-exec" {
