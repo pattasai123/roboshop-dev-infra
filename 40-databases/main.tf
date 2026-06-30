@@ -39,7 +39,7 @@ resource "aws_instance" "mongodb_host" {
   }
 }
 
-/*
+
 resource "aws_instance" "redis_host" {
   ami                    = local.ami
   instance_type          = var.instance_type
@@ -51,7 +51,7 @@ resource "aws_instance" "redis_host" {
     var.bastion_tags,
     local.common_tags,
     {
-      Name = local.common_name
+      Name = "${local.common_name}-redis"
     }
   )
 }
@@ -76,10 +76,11 @@ resource "aws_instance" "redis_host" {
     
     inline = [
       "chmod +x /tmp/bootstrap.sh",
-      "sudo sh /tmp/bootstrap.sh"
+      "sudo sh /tmp/bootstrap.sh redis"
     ]
   }
 }
+
 resource "aws_instance" "rabbitmq_host" {
   ami                    = local.ami
   instance_type          = var.instance_type
@@ -91,7 +92,7 @@ resource "aws_instance" "rabbitmq_host" {
     var.bastion_tags,
     local.common_tags,
     {
-      Name = local.common_name
+      Name = "${local.common_name}-rabbitmq"
     }
   )
 }
@@ -116,8 +117,7 @@ resource "aws_instance" "rabbitmq_host" {
     
     inline = [
       "chmod +x /tmp/bootstrap.sh",
-      "sudo sh /tmp/bootstrap.sh"
+      "sudo sh /tmp/bootstrap.sh rabbitmq"
     ]
   }
 }
-*/

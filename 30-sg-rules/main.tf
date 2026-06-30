@@ -24,3 +24,23 @@ resource "aws_security_group_rule" "mongodb" {
   security_group_id        = data.aws_ssm_parameter.mongodb_sg_id.value
   source_security_group_id = data.aws_ssm_parameter.bastion_sg_id.value
 }
+
+resource "aws_security_group_rule" "redis" {
+  type                     = "ingress"
+  from_port                = 22
+  to_port                  = 22
+  protocol                 = "tcp"
+
+  security_group_id        = data.aws_ssm_parameter.redis_sg_id.value
+  source_security_group_id = data.aws_ssm_parameter.bastion_sg_id.value
+}
+
+resource "aws_security_group_rule" "rabbitmq" {
+  type                     = "ingress"
+  from_port                = 22
+  to_port                  = 22
+  protocol                 = "tcp"
+
+  security_group_id        = data.aws_ssm_parameter.rabbitmq_sg_id.value
+  source_security_group_id = data.aws_ssm_parameter.bastion_sg_id.value
+}
