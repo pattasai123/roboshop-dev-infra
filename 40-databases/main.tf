@@ -17,7 +17,7 @@ resource "aws_instance" "mongodb_host" {
  resource "null_resource" "cluster" {
  
   triggers = {
-    instance_id = aws_instance.mongodb-host.id
+    instance_id = aws_instance.mongodb_host.id
   }
 
   connection {
