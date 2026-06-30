@@ -14,7 +14,7 @@ resource "aws_instance" "mongodb_host" {
   )
 }
 
- resource "null_resource" "cluster" {
+ resource "null_resource" "mongodb-cluster" {
  
   triggers = {
     instance_id = aws_instance.mongodb_host.id
@@ -56,7 +56,7 @@ resource "aws_instance" "redis_host" {
   )
 }
 
- resource "null_resource" "cluster" {
+ resource "null_resource" "redis-cluster" {
  
   triggers = {
     instance_id = aws_instance.redis_host.id
@@ -97,7 +97,7 @@ resource "aws_instance" "rabbitmq_host" {
   )
 }
 
- resource "null_resource" "cluster" {
+ resource "null_resource" "rabbitmq-cluster" {
  
   triggers = {
     instance_id = aws_instance.rabbitmq_host.id
