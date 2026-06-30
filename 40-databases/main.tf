@@ -26,11 +26,15 @@ resource "aws_instance" "mongodb_host" {
     password    = "DevOps321"
     host        = aws_instance.mongodb_host.private_ip
   }
-
+   provisioner "file" {
+    source      = "bootstrap.sh"             # Path on your local machine
+    destination = "/var/bootstrap.sh"     # Path on the remote server
+  }
   provisioner "remote-exec" {
     
     inline = [
-      "echo hello world"
+      "chmod +x /var/bootstrap.sh",
+      "sudo sh /var/bootstrap.sh"
     ]
   }
 }
