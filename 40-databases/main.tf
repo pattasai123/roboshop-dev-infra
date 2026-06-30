@@ -1,8 +1,8 @@
-resource "aws_instance" "mongodb-host" {
+resource "aws_instance" "mongodb_host" {
   ami                    = local.ami
   instance_type          = var.instance_type
 
-  subnet_id              = local.subnet
+  subnet_id              = local.subnet[0]
   vpc_security_group_ids = [local.mongodb_sg_id]
 
   tags = merge(
@@ -12,7 +12,9 @@ resource "aws_instance" "mongodb-host" {
       Name = local.common_name
     }
   )
-  resource "null_resource" "cluster" {
+}
+
+ resource "null_resource" "cluster" {
  
   triggers_replace = [
     aws_instance.web.id
@@ -30,5 +32,4 @@ resource "aws_instance" "mongodb-host" {
       "echo hello world"
     ]
   }
-}
 }
