@@ -3,6 +3,10 @@ data "aws_ami" "joindevops" {
   owners      = ["832510228841"]
 }
 
+data "aws_iam_role" "ec2" {
+  name = "EC2ssmparameters"
+}
+
 data "aws_ssm_parameter" "database_subnet_a" {
   name = "/${var.project}/${var.environment}/database_subnet_a"
 }
@@ -24,3 +28,4 @@ data "aws_ssm_parameter" "rabbitmq_sg_id" {
 data "aws_ssm_parameter" "mysql_sg_id" {
   name = "/${var.project}/${var.environment}/mysql_sg_id"
 }
+
