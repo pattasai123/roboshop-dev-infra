@@ -16,9 +16,9 @@ resource "aws_instance" "mongodb_host" {
 
  resource "terraform_data" "mongodb" {
  
-  triggers = {
-    instance_id = aws_instance.mongodb_host.id
-  }
+  triggers_replace = [
+    aws_instance.mongodb_host.id
+  ]
 
   connection {
     type        = "ssh"
@@ -58,9 +58,9 @@ resource "aws_instance" "redis_host" {
 
  resource "terraform_data" "redis" {
  
-  triggers = {
-    instance_id = aws_instance.redis_host.id
-  }
+  triggers_replace = [
+    aws_instance.redis_host.id
+  ]
 
   connection {
     type        = "ssh"
@@ -99,9 +99,9 @@ resource "aws_instance" "rabbitmq_host" {
 
  resource "terraform_data" "rabbitmq" {
  
-  triggers = {
-    instance_id = aws_instance.rabbitmq_host.id
-  }
+  triggers_replace = [
+    aws_instance.rabbitmq_host.id
+  ]
 
   connection {
     type        = "ssh"
@@ -142,14 +142,14 @@ resource "aws_instance" "mysql_host" {
 
 resource "aws_iam_instance_profile" "mysql" {
   name = "mysql"
-  role = "EC2ssmparameters"
+  role = EC2ssmparameters
 }
 
  resource "terraform_data" "mysql" {
  
-  triggers = {
-    instance_id = aws_instance.mysql_host.id
-  }
+ triggers_replace = [
+    aws_instance.mysql_host.id
+  ]
 
   connection {
     type        = "ssh"
