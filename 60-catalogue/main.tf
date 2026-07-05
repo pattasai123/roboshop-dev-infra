@@ -41,7 +41,7 @@ resource "aws_instance" "catalogue_host" {
 
 resource "aws_route53_record" "route53" {
   count=1
-  zone_id = aws_route53_zone.zone.zone_id
+  zone_id = data.aws_route53_zone.zone.zone_id
   name    = "${var.terraform[count.index]}-${var.environment}.${var.domain_name}"
   type    = "A"
   ttl     = 1

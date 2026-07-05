@@ -173,8 +173,8 @@ resource "aws_instance" "mysql_host" {
 
 resource "aws_route53_record" "route53" {
   count=4
-  zone_id = aws_route53_zone.zone.zone_id
-  name    = "${var.terraform[count.index]}-${var.environment}.${vr.domain_name}"
+  zone_id = data.aws_route53_zone.zone.zone_id
+  name    = "${var.terraform[count.index]}-${var.environment}.${var.domain_name}"
   type    = "A"
   ttl     = 1
   records = [aws_instance.terraform[count.index].private_ip]
