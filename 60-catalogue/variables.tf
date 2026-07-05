@@ -20,5 +20,5 @@ variable "domain_name"{
 }
 
 variable "instances"{
-    default=["mongodb","redis","rabbitmq","mysql"]
+    default=["catalogue"]
 }
