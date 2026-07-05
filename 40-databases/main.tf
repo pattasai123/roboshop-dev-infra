@@ -123,7 +123,7 @@ resource "aws_instance" "rabbitmq_host" {
 }
 
 
-resource "aws_iam_instance_profile" "mysql_host" {
+resource "aws_iam_instance_profile" "mysql" {
   name = "mysql"
   role = data.aws_iam_role.ec2.name
 }
