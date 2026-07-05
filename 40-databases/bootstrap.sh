@@ -2,35 +2,33 @@
 
 component=$1
 env=$2
-dnf install -y ansible
 
-# ansible-pull \
-#   -U https://github.com/pattasai123/ansi_roles_tf.git \
-#   -e component=$component \
-#   main.yaml
+dnf install -y ansible git
 
-REPO_URL= https://github.com/pattasai123/ansi_roles_tf.git
-REPO_DIR= /opt/roboshop/ansible
-ANSIBLE_DIR= ansi_roles_tf
+REPO_URL="https://github.com/pattasai123/ansi_roles_tf.git"
+REPO_DIR="/opt/roboshop/ansible"
+ANSIBLE_DIR="ansi_roles_tf"
 
-mkdir -p /opt/roboshop/ansible
+mkdir -p "$REPO_DIR"
 mkdir -p /var/log/roboshop
-touch ansible.log
+touch /var/log/roboshop/ansible.log
 
-cd $REPO_DIR
+cd "$REPO_DIR" || exit 1
 
-if [-d $ANSIBLE_DIR ]; when
+if [ -d "$ANSIBLE_DIR" ]; then
+    cd "$ANSIBLE_DIR" || exit 1
+    git pull
+else
+    git clone "$REPO_URL"
+    cd "$ANSIBLE_DIR" || exit 1
+fi
 
-  cd $ANSIBLE_DIR
-  pull $REPO_URL
+ansible-playbook \
+    -e component="$component" \
+    -e env="$env" \
+    main.yaml
 
-else 
-  git clone $REPO_URL
-  cd $ANSIBLE_DIR
-
-if
-
-ansible-playbook -e component=$component -e env=$env main.yaml
+# ansible-playbook -e component=$component -e env=$env main.yaml
 
 
 
