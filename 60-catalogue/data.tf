@@ -3,10 +3,6 @@ data "aws_ami" "joindevops" {
   owners      = ["832510228841"]
 }
 
-data "aws_iam_role" "ec2" {
-  name = "EC2ssmparameters"
-}
-
 data "aws_ssm_parameter" "private_subnet_a" {
   name = "/${var.project}/${var.environment}/database_subnet_a"
 }
