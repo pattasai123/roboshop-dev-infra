@@ -122,12 +122,6 @@ resource "aws_instance" "rabbitmq_host" {
   }
 }
 
-
-resource "aws_iam_instance_profile" "mysql" {
-  name = "mysql"
-  role = data.aws_iam_role.ec2.name
-}
-
 resource "aws_instance" "mysql_host" {
   ami                    = local.ami
   instance_type          = var.instance_type
@@ -135,7 +129,7 @@ resource "aws_instance" "mysql_host" {
   subnet_id              = local.subnet[0]
   vpc_security_group_ids = [local.mysql_sg_id]
 
-  iam_instance_profile   = aws_iam_instance_profile.mysql.name
+  iam_instance_profile = data.aws_iam_instance_profile.mysql.name
 
   tags = merge(
     var.bastion_tags,
