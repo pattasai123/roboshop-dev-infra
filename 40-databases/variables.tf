@@ -18,7 +18,3 @@ variable "environment"{
 variable "domain_name"{
     default="bongu.online"
 }
-
-variable "instances"{
-    default=["mongodb","redis","rabbitmq","mysql"]
-}

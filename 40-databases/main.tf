@@ -123,7 +123,7 @@ resource "aws_instance" "rabbitmq_host" {
 }
 
 
-resource "aws_iam_instance_profile" "mysql" {
+resource "aws_iam_instance_profile" "mysql_host" {
   name = "mysql"
   role = data.aws_iam_role.ec2.name
 }
@@ -171,12 +171,38 @@ resource "aws_instance" "mysql_host" {
   }
 }
 
-resource "aws_route53_record" "route53" {
-  count=4
+resource "aws_route53_record" "mongodb" {
   zone_id = data.aws_route53_zone.zone.zone_id
-  name    = "${var.terraform[count.index]}-${var.environment}.${var.domain_name}"
+  name    = "mongodb-${var.environment}.${var.domain_name}"
   type    = "A"
   ttl     = 1
-  records = [aws_instance.terraform[count.index].private_ip]
+  records = [aws_instance.mongodb_host.private_ip]
+  allow_overwrite = true
+}
+
+resource "aws_route53_record" "redis" {
+  zone_id = data.aws_route53_zone.zone.zone_id
+  name    = "redis-${var.environment}.${var.domain_name}"
+  type    = "A"
+  ttl     = 1
+  records = [aws_instance.redis_host.private_ip]
+  allow_overwrite = true
+}
+
+resource "aws_route53_record" "rabbitmq" {
+  zone_id = data.aws_route53_zone.zone.zone_id
+  name    = "rabbitmq-${var.environment}.${var.domain_name}"
+  type    = "A"
+  ttl     = 1
+  records = [aws_instance.rabbitmq_host.private_ip]
+  allow_overwrite = true
+}
+
+resource "aws_route53_record" "route53" {
+  zone_id = data.aws_route53_zone.zone.zone_id
+  name    = "mysql-${var.environment}.${var.domain_name}"
+  type    = "A"
+  ttl     = 1
+  records = [aws_instance.mysql_host.private_ip]
   allow_overwrite = true
 }
