@@ -34,7 +34,7 @@ resource "aws_instance" "mongodb_host" {
     
     inline = [
       "chmod +x /tmp/bootstrap.sh",
-      "sudo sh /tmp/bootstrap.sh"
+      "sudo sh /tmp/bootstrap.sh mongodb dev"
     ]
   }
 }
@@ -76,7 +76,7 @@ resource "aws_instance" "redis_host" {
     
     inline = [
       "chmod +x /tmp/bootstrap.sh",
-      "sudo sh /tmp/bootstrap.sh redis"
+      "sudo sh /tmp/bootstrap.sh redis dev"
     ]
   }
 }
@@ -117,7 +117,7 @@ resource "aws_instance" "rabbitmq_host" {
     
     inline = [
       "chmod +x /tmp/bootstrap.sh",
-      "sudo sh /tmp/bootstrap.sh rabbitmq"
+      "sudo sh /tmp/bootstrap.sh rabbitmq dev"
     ]
   }
 }
