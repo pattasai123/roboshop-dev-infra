@@ -4,11 +4,13 @@ data "aws_ami" "joindevops" {
 }
 
 data "aws_ssm_parameter" "private_subnet_a" {
-  name = "/${var.project}/${var.env}/database_subnet_a"
+  name = "/${var.project}/${var.env}/private_subnet_a"
 }
+
 data "aws_ssm_parameter" "private_subnet_b" {
-  name = "/${var.project}/${var.env}/database_subnet_b"
+  name = "/${var.project}/${var.env}/private_subnet_b"
 }
+
 data "aws_ssm_parameter" "catalogue_sg_id" {
   name = "/${var.project}/${var.env}/catalogue_sg_id"
 }
