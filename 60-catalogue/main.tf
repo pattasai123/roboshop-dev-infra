@@ -77,6 +77,7 @@ resource "aws_lb_target_group" "catalogue" {
     protocol = "HTTP"
     unhealthy_threshold = 2
   }
+  depends_on = [aws_ami_from_instance.catalogue]
 }
 
 resource "aws_launch_template" "catalogue" {
@@ -119,6 +120,7 @@ resource "aws_launch_template" "catalogue" {
         Name="${local.common_name}-catalogue"
       }
     )
+    depends_on = [aws_lb_target_group.catalogue]
 }
 
 resource "aws_autoscaling_group" "catalogue" {
@@ -131,6 +133,7 @@ resource "aws_autoscaling_group" "catalogue" {
     id      = aws_launch_template.catalogue.id
     version = "$Latest"
   }
+  depends_on = [aws_launch_template.catalogue]
 }
 
 resource "aws_autoscaling_policy" "catalogue" {
@@ -139,6 +142,7 @@ resource "aws_autoscaling_policy" "catalogue" {
   adjustment_type        = "ChangeInCapacity"
   cooldown               = 100
   autoscaling_group_name = aws_autoscaling_group.catalogue.name
+  depends_on = [aws_autoscaling_group.catalogue]
 }
 
 resource "aws_lb_listener_rule" "catalogue" {
@@ -155,4 +159,5 @@ resource "aws_lb_listener_rule" "catalogue" {
       values = ["catalogue.backend_alb-${var.env}.${var.domain_name}"]
     }
   }
+  depends_on = [aws_autoscaling_policy.catalogue]
 }
