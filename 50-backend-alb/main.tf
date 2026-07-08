@@ -1,22 +1,22 @@
-resource "aws_lb" "backend-lb" {
-  name               = "backend-lb"
-  internal           = false
+resource "aws_lb" "backend_lb" {
+  name               = "backend_lb"
+  internal           = true
   load_balancer_type = "application"
   security_groups    = [local.security_groups]
   subnets            = local.subnet
 
-  enable_deletion_protection = true
+  enable_deletion_protection = fasle
 
   tags = merge(
-    var.frontend_lb_tags,
+    var.backend_lb_tags,
     local.common_tags,
     {
-      Name = "${local.common_name}-backend-lb"
+      Name = "${local.common_name}-backend_lb"
     }
   )
 }
 resource "aws_lb_listener" "backend" {
-  load_balancer_arn = aws_lb.backend-lb.arn
+  load_balancer_arn = aws_lb.backend_lb.arn
   port              = "80"
   protocol          = "HTTP"
 
@@ -36,8 +36,8 @@ resource "aws_route53_record" "backend" {
   type    = "A"
 
   alias {
-    name                   = aws_elb.backend-lb.dns_name
-    zone_id                = aws_elb.backend-lb.zone_id
+    name                   = aws_lb.backend_lb.dns_name
+    zone_id                = aws_lb.backend_lb.zone_id
     evaluate_target_health = true
   }
 }

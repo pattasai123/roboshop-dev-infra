@@ -1,4 +1,4 @@
-variable "frontend_lb_tags"{
+variable "backend_lb_tags"{
     type=map(string)
     default={}
 }
