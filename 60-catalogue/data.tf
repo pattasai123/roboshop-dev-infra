@@ -4,17 +4,17 @@ data "aws_ami" "joindevops" {
 }
 
 data "aws_ssm_parameter" "private_subnet_a" {
-  name = "/${var.project}/${var.environment}/database_subnet_a"
+  name = "/${var.project}/${var.env}/database_subnet_a"
 }
 data "aws_ssm_parameter" "private_subnet_b" {
-  name = "/${var.project}/${var.environment}/database_subnet_b"
+  name = "/${var.project}/${var.env}/database_subnet_b"
 }
 data "aws_ssm_parameter" "catalogue_sg_id" {
-  name = "/${var.project}/${var.environment}/catalogue_sg_id"
+  name = "/${var.project}/${var.env}/catalogue_sg_id"
 }
 
 data "aws_ssm_parameter" "vpc_id" {
-  name = "/${var.project}/${var.environment}/vpc_id"
+  name = "/${var.project}/${var.env}/vpc_id"
 }
 
 data "aws_route53_zone" "zone" {
@@ -23,5 +23,5 @@ data "aws_route53_zone" "zone" {
 }
 
 data "aws_ssm_parameter" "backend_alb_arn" {
-  name = "/${var.project}/${var.environment}/backend_alb_arn"
+  name = "/${var.project}/${var.env}/backend_alb_arn"
 }
