@@ -40,12 +40,11 @@ resource "aws_instance" "catalogue_host" {
 }
 
 resource "aws_route53_record" "route53" {
-  count=1
   zone_id = data.aws_route53_zone.zone.zone_id
-  name    = "${var.instances[count.index]}-${var.env}.${var.domain_name}"
+  name    = "${var.instance}-${var.env}.${var.domain_name}"
   type    = "A"
   ttl     = 1
-  records = [aws_instance.catalogue_host[count.index].private_ip]
+  records = [aws_instance.catalogue_host.private_ip]
   allow_overwrite = true
 }
 
@@ -105,7 +104,7 @@ resource "aws_launch_template" "catalogue" {
     )
   }
     tag_specifications {
-    resource_type = "Volume"
+    resource_type = "volume"
 
     tags = merge(
       local.common_tags,

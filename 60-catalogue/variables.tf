@@ -19,6 +19,6 @@ variable "domain_name"{
     default="bongu.online"
 }
 
-variable "instances"{
-    default=["catalogue"]
+variable "instance"{
+    default="catalogue"
 }
