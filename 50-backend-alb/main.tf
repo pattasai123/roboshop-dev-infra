@@ -5,7 +5,7 @@ resource "aws_lb" "backend_lb" {
   security_groups    = [local.security_groups]
   subnets            = local.subnet
 
-  enable_deletion_protection = fasle
+  enable_deletion_protection = false
 
   tags = merge(
     var.backend_lb_tags,
