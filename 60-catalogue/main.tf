@@ -92,7 +92,7 @@ resource "aws_launch_template" "catalogue" {
     availability_zone = "us-east-1a"
   }
 
-  vpc_security_group_ids = [subnet]
+  vpc_security_group_ids = [local.subnet]
 
   tag_specifications {
     resource_type = "instance"
