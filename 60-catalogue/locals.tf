@@ -5,7 +5,7 @@ locals {
     data.aws_ssm_parameter.private_subnet_a.value,
     data.aws_ssm_parameter.private_subnet_b.value
     ]
-    backend_alb_arn    = data.aws_ssm_parameter.backend_alb_arn.value
+    backend_listener_arn    = data.aws_ssm_parameter.backend_listener_arn.value
   common_name = "${var.project}-${var.env}"
 
   common_tags = {

@@ -24,6 +24,6 @@ data "aws_route53_zone" "zone" {
   private_zone = false
 }
 
-data "aws_ssm_parameter" "backend_alb_arn" {
-  name = "/${var.project}/${var.env}/backend_alb_arn"
+data "aws_ssm_parameter" "backend_listener_arn" {
+  name = "/${var.project}/${var.env}/backend_listener_arn"
 }

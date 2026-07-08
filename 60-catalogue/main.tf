@@ -148,7 +148,7 @@ resource "aws_lb_listener_rule" "catalogue" {
 
   action {
     type             = "forward"
-    target_group_arn = local.backend_alb_arn
+    target_group_arn = local.backend_listener_arn
   }
 
   condition {
