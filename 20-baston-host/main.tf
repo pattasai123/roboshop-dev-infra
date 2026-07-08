@@ -11,6 +11,10 @@ resource "aws_instance" "bastion-host" {
   vpc_security_group_ids = [local.bastion_sg_id]
   user_data=file("bootstrap.sh")
   iam_instance_profile   = aws_iam_instance_profile.bastion.name
+  root_block_device {
+    volume_size = 50
+    volume_type = "gp3"
+  }
   tags = merge(
     var.bastion_tags,
     local.common_tags,
