@@ -5,11 +5,12 @@ locals {
     data.aws_ssm_parameter.private_subnet_a.value,
     data.aws_ssm_parameter.private_subnet_b.value
     ]
-  common_name = "${var.project}-${var.environment}"
+    backend_alb_arn    = data.aws_ssm_parameter.backend_alb_arn.value
+  common_name = "${var.project}-${var.env}"
 
   common_tags = {
     project   = var.project
-    env       = var.environment
+    env       = var.env
     terraform = true
   }
 }

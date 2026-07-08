@@ -7,6 +7,10 @@ variable "project"{
     default="roboshop"
 }
 
-variable "environment"{
+variable "env"{
     default="dev"
+}
+
+variable "domain_name"{
+    default="bongu.online"
 }

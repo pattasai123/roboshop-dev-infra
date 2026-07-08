@@ -63,3 +63,21 @@ resource "aws_security_group_rule" "catalogue" {
   security_group_id        = data.aws_ssm_parameter.catalogue_sg_id.value
   source_security_group_id = data.aws_ssm_parameter.bastion_sg_id.value
 }
+
+resource "aws_security_group_rule" "mongodb-catalogue" {
+  type                     = "ingress"
+  from_port                = 27017
+  to_port                  = 27017
+  protocol                 = "tcp"
+  security_group_id        = data.aws_ssm_parameter.bastion_sg_id.value
+  source_security_group_id = data.aws_ssm_parameter.catalogue_sg_id.value
+}
+
+resource "aws_security_group_rule" "backend-alb-to-catalogue" {
+  type                     = "ingress"
+  from_port                = 8080
+  to_port                  = 8080
+  protocol                 = "tcp"
+  security_group_id        = data.aws_ssm_parameter.catalogue_sg_id.value
+  source_security_group_id = data.aws_ssm_parameter.backend_lb_sg_id.value
+}
