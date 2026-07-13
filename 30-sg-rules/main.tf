@@ -88,7 +88,7 @@ resource "aws_security_group_rule" "fronted-to-backend_lb" {
   to_port                  = 80
   protocol                 = "tcp"
   security_group_id        = data.aws_ssm_parameter.backend_lb_sg_id.value
-  source_security_group_id = data.aws_ssm_parameter.fronted_sg_id.value
+  source_security_group_id = data.aws_ssm_parameter.frontend_sg_id.value
 }
 
 resource "aws_security_group_rule" "fronted-alb-to-fronted" {
@@ -96,6 +96,6 @@ resource "aws_security_group_rule" "fronted-alb-to-fronted" {
   from_port                = 443
   to_port                  = 443
   protocol                 = "tcp"
-  security_group_id        = data.aws_ssm_parameter.fronted_sg_id.value
+  security_group_id        = data.aws_ssm_parameter.frontend_sg_id.value
   source_security_group_id = data.aws_ssm_parameter.fronted_lb_sg_id.value
 }
