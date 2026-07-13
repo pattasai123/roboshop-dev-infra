@@ -6,7 +6,7 @@ resource "aws_instance" "catalogue_host" {
   vpc_security_group_ids = [local.catalogue_sg_id]
 
   tags = merge(
-    var.bastion_tags,
+    var.catalogue_tags,
     local.common_tags,
     {
       Name = "${local.common_name}-catalogue"
@@ -158,3 +158,14 @@ resource "aws_lb_listener_rule" "catalogue" {
   }
   depends_on = [aws_autoscaling_policy.catalogue]
 }
+
+ resource "terraform_data" "catalogue" {
+
+  provisioner "local-exec" {
+    command = "aws ec2 terminate-instances --instance-ids aws_instance.catalogue_host.id"
+  }
+}
+
+
+
+

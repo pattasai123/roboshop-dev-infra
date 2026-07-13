@@ -2,7 +2,7 @@ variable "instance_type"{
     default="t3.micro"
 }
 
-variable "catalogue_tags"{
+variable "acm_tags"{
     type=map(string)
     default={}
 }
@@ -17,8 +17,4 @@ variable "env"{
 
 variable "domain_name"{
     default="bongu.online"
-}
-
-variable "instance"{
-    default="catalogue"
 }
