@@ -36,7 +36,7 @@ resource "aws_lb_listener" "frontend" {
 
 resource "aws_route53_record" "frontend" {
   zone_id = data.aws_route53_zone.zone.zone_id
-  name    = "roboshop-${var.env}.${var.domain_name}"
+  name    = "roboshop.${var.domain_name}"
   type    = "A"
 
   alias {
