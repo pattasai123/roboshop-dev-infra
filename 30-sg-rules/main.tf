@@ -81,3 +81,21 @@ resource "aws_security_group_rule" "backend-alb-to-catalogue" {
   security_group_id        = data.aws_ssm_parameter.catalogue_sg_id.value
   source_security_group_id = data.aws_ssm_parameter.backend_lb_sg_id.value
 }
+
+resource "aws_security_group_rule" "fronted-to-backend_lb" {
+  type                     = "ingress"
+  from_port                = 80
+  to_port                  = 80
+  protocol                 = "tcp"
+  security_group_id        = data.aws_ssm_parameter.backend_lb_sg_id.value
+  source_security_group_id = data.aws_ssm_parameter.fronted_sg_id.value
+}
+
+resource "aws_security_group_rule" "fronted-alb-to-fronted" {
+  type                     = "ingress"
+  from_port                = 443
+  to_port                  = 443
+  protocol                 = "tcp"
+  security_group_id        = data.aws_ssm_parameter.fronted_sg_id.value
+  source_security_group_id = data.aws_ssm_parameter.fronted_lb_sg_id.value
+}
