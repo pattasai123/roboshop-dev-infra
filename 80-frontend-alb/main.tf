@@ -38,6 +38,7 @@ resource "aws_route53_record" "frontend" {
   zone_id = data.aws_route53_zone.zone.zone_id
   name    = "roboshop.${var.domain_name}"
   type    = "A"
+  allow_overwrite = true
 
   alias {
     name                   = aws_lb.fronted.dns_name
