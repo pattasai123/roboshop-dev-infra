@@ -165,7 +165,7 @@ resource "aws_lb_listener_rule" "catalogue" {
   ]
   depends_on = [aws_lb_listener_rule.catalogue]
   provisioner "local-exec" {
-    command = "aws ec2 terminate-instances --instance-ids aws_instance.catalogue_host.id"
+    command = "aws ec2 terminate-instances --instance-ids ${aws_instance.catalogue_host.id}"
   }
 }
 
