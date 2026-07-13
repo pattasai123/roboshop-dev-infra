@@ -2,19 +2,13 @@ resource "aws_lb" "fronted" {
   name               = "frontend-lb-tf"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [fronted]
-  subnets            = subnet
+  security_groups    = [local.fronted]
+  subnets            = local.subnet
 
   enable_deletion_protection = false
 
-  access_logs {
-    bucket  = aws_s3_bucket.devops-terraform-remote.remote-roboshop-fronted-alb.id
-    prefix  = "roboshop-fronted-lb"
-    enabled = true
-  }
-
   tags = merge(
-    var.fronted_lb_tags,
+    var.fronted_alb_tags,
     local.common_tags,
     {
       Name = "${local.common_name}-fronted_lb"
@@ -23,7 +17,7 @@ resource "aws_lb" "fronted" {
 }
 
 resource "aws_lb_listener" "frontend" {
-  load_balancer_arn = aws_lb.frontend.arn
+  load_balancer_arn = aws_lb.fronted.arn
   port              = "443"
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-TLS13-1-3-2021-06"

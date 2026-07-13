@@ -159,7 +159,7 @@ resource "aws_lb_listener_rule" "catalogue" {
   depends_on = [aws_autoscaling_policy.catalogue]
 }
 
- resource "terraform_data" "catalogue" {
+ resource "terraform_data" "catalogue-stop-delete" {
 
   provisioner "local-exec" {
     command = "aws ec2 terminate-instances --instance-ids aws_instance.catalogue_host.id"
