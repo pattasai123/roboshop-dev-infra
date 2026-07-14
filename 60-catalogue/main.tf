@@ -34,7 +34,7 @@ resource "aws_instance" "catalogue_host" {
     
     inline = [
       "chmod +x /tmp/bootstrap.sh",
-      "sudo sh /tmp/bootstrap.sh"
+      "sudo sh /tmp/bootstrap.sh catalogue dev"
     ]
   }
 }
