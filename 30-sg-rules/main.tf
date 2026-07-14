@@ -92,10 +92,11 @@ resource "aws_security_group_rule" "fronted-to-fronted_lb" {
 }
 
 resource "aws_security_group_rule" "internet-to-fronted-alb" {
-  type                     = "ingress"
-  from_port                = 443
-  to_port                  = 443
-  protocol                 = "tcp"
-  security_group_id        = data.aws_ssm_parameter.fronted_lb_sg_id.value
-  cidr_blocks = ["0.0.0.0/0"]
+  type              = "ingress"
+  from_port         = 443
+  to_port           = 443
+  protocol          = "tcp"
+
+  security_group_id = data.aws_ssm_parameter.fronted_lb_sg_id.value
+  cidr_blocks       = ["0.0.0.0/0"]
 }

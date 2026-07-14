@@ -20,10 +20,10 @@ data "aws_route53_zone" "zone" {
   private_zone = false
 }
 
-data "aws_ssm_parameter" "frontend_sg_id" {
-  name = "/${var.project}/${var.env}/frontend_sg_id"
+data "aws_ssm_parameter" "fronted_lb_sg_id" {
+  name = "/${var.project}/${var.env}/fronted_lb_sg_id"
 }
 
-data "aws_ssm_parameter" "fronted_alb_arn" {
-  name = "/${var.project}/${var.env}/fronted_alb_arn"
+data "aws_ssm_parameter" "frontend_alb_arn" {
+  name = "/${var.project}/${var.env}/frontend_alb_arn"
 }
