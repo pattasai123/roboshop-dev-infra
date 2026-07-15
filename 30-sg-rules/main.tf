@@ -170,6 +170,15 @@ resource "aws_security_group_rule" "backend-alb-to-catalogue" {
   source_security_group_id = data.aws_ssm_parameter.backend_lb_sg_id.value
 }
 
+resource "aws_security_group_rule" "fronted-to-backend_lb" {
+  type                     = "ingress"
+  from_port                = 8080
+  to_port                  = 8080
+  protocol                 = "tcp"
+  security_group_id        = data.aws_ssm_parameter.backend_lb_sg_id.value
+  source_security_group_id = data.aws_ssm_parameter.frontend_sg_id.value
+}
+
 resource "aws_security_group_rule" "fronted-to-fronted_lb" {
   type                     = "ingress"
   from_port                = 80
@@ -188,3 +197,47 @@ resource "aws_security_group_rule" "internet-to-fronted-alb" {
   cidr_blocks       = ["0.0.0.0/0"]
 }
 
+resource "aws_security_group_rule" "cart-to-catalogue" {
+  type                     = "ingress"
+  from_port                = 8080
+  to_port                  = 8080
+  protocol                 = "tcp"
+  security_group_id        = data.aws_ssm_parameter.catalogue_sg_id.value
+  source_security_group_id = data.aws_ssm_parameter.cart_sg_id.value
+}
+
+resource "aws_security_group_rule" "cart-to-redis" {
+  type                     = "ingress"
+  from_port                = 8080
+  to_port                  = 8080
+  protocol                 = "tcp"
+  security_group_id        = data.aws_ssm_parameter.redis_sg_id.value
+  source_security_group_id = data.aws_ssm_parameter.cart_sg_id.value
+}
+
+resource "aws_security_group_rule" "shipping-to-cart" {
+  type                     = "ingress"
+  from_port                = 8080
+  to_port                  = 8080
+  protocol                 = "tcp"
+  security_group_id        = data.aws_ssm_parameter.cart_sg_id.value
+  source_security_group_id = data.aws_ssm_parameter.shipping_sg_id.value
+}
+
+resource "aws_security_group_rule" "payment-to-cart" {
+  type                     = "ingress"
+  from_port                = 8080
+  to_port                  = 8080
+  protocol                 = "tcp"
+  security_group_id        = data.aws_ssm_parameter.cart_sg_id.value
+  source_security_group_id = data.aws_ssm_parameter.payment_sg_id.value
+}
+
+resource "aws_security_group_rule" "payment-to-user" {
+  type                     = "ingress"
+  from_port                = 8080
+  to_port                  = 8080
+  protocol                 = "tcp"
+  security_group_id        = data.aws_ssm_parameter.user_sg_id.value
+  source_security_group_id = data.aws_ssm_parameter.payment_sg_id.value
+}
