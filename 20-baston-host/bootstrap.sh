@@ -8,8 +8,8 @@ sudo dnf install -y dnf-plugins-core
 sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
 sudo dnf install -y terraform
 
-sudo git clone https://github.com/pattasai123/roboshop-dev-infra.git
-sudo cd 40-databases
-sudo terraform init
-sudo terraform apply -auto-approve
-sudo cd ..
+git clone https://github.com/pattasai123/roboshop-dev-infra.git
+cd 40-databases
+terraform init -reconfigure
+terraform apply -auto-approve
+cd ..
