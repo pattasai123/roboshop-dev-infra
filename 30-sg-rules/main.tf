@@ -96,7 +96,7 @@ resource "aws_security_group_rule" "payment" {
   security_group_id        = data.aws_ssm_parameter.payment_sg_id.value
   source_security_group_id = data.aws_ssm_parameter.bastion_sg_id.value
 }
-/*
+
 resource "aws_security_group_rule" "cataloguet_to_bastion" {
   type                     = "ingress"
   from_port                = 27017
@@ -105,7 +105,7 @@ resource "aws_security_group_rule" "cataloguet_to_bastion" {
   security_group_id        = data.aws_ssm_parameter.bastion_sg_id.value
   source_security_group_id = data.aws_ssm_parameter.catalogue_sg_id.value
 }
-*/
+
 
 resource "aws_security_group_rule" "catalogue_to_mongodb" {
   type                     = "ingress"
