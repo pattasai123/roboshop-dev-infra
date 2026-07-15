@@ -12,3 +12,4 @@ sudo git clone https://github.com/pattasai123/roboshop-dev-infra.git
 sudo cd 40-databases
 sudo terraform init
 sudo terraform apply -auto-approve
+sudo cd ..
