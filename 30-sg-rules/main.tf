@@ -99,8 +99,8 @@ resource "aws_security_group_rule" "bastion_user" {
 }
 resource "aws_security_group_rule" "user_to_mongodb" {
   type                     = "ingress"
-  from_port                = 6379
-  to_port                  = 6379
+  from_port                = 27017
+  to_port                  = 27017
   protocol                 = "tcp"
   security_group_id        = data.aws_ssm_parameter.mongodb_sg_id.value
   source_security_group_id = data.aws_ssm_parameter.user_sg_id.value
