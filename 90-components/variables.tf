@@ -11,7 +11,16 @@ variable "domain_name"{
 
 }
 
-variable "components"{
-    default="catalogue"
+variable "components" {
+  type = map(number)
 
+  default = {
+    catalogue = 10
+    user      = 20
+    cart      = 30
+    payment   = 40
+    shipping  = 50
+    frontend  = 10
+  }
 }
+
