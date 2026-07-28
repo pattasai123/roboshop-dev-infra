@@ -283,3 +283,39 @@ resource "aws_security_group_rule" "internet-to-fronted-alb" {
   security_group_id = data.aws_ssm_parameter.fronted_lb_sg_id.value
   cidr_blocks       = ["0.0.0.0/0"]
 }
+
+resource "aws_security_group_rule" "internet-to-vpn" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  security_group_id = data.aws_ssm_parameter.vpn_sg_id.value
+  cidr_blocks       = ["0.0.0.0/0"]
+}
+
+resource "aws_security_group_rule" "internet-to-vpn443" {
+  type              = "ingress"
+  from_port         = 443
+  to_port           = 443
+  protocol          = "tcp"
+  security_group_id = data.aws_ssm_parameter.vpn_sg_id.value
+  cidr_blocks       = ["0.0.0.0/0"]
+}
+
+resource "aws_security_group_rule" "internet-to-vpn943" {
+  type              = "ingress"
+  from_port         = 943
+  to_port           = 943
+  protocol          = "tcp"
+  security_group_id = data.aws_ssm_parameter.vpn_sg_id.value
+  cidr_blocks       = ["0.0.0.0/0"]
+}
+
+resource "aws_security_group_rule" "internet-to-vpn1194" {
+  type              = "ingress"
+  from_port         = 1194
+  to_port           = 1194
+  protocol          = "tcp"
+  security_group_id = data.aws_ssm_parameter.vpn_sg_id.value
+  cidr_blocks       = ["0.0.0.0/0"]
+}

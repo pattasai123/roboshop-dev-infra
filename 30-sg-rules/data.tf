@@ -48,3 +48,6 @@ data "aws_ssm_parameter" "frontend_sg_id" {
 data "aws_ssm_parameter" "fronted_lb_sg_id" {
   name = "/${var.project}/${var.environment}/fronted_lb_sg_id"
 }
+data "aws_ssm_parameter" "vpn_sg_id" {
+  name = "/${var.project}/${var.environment}/vpn_sg_id"
+}

@@ -7,5 +7,5 @@ variable "environment"{
 }
 
 variable "sg_names"{
-    default=["mongodb","redis","mysql","rabbitmq","catalogue","user","cart","payment","shipping","frontend","bastion","backend_lb","fronted_lb","vpc"]
+    default=["mongodb","redis","mysql","rabbitmq","catalogue","user","cart","payment","shipping","frontend","bastion","backend_lb","fronted_lb","vpn"]
 }

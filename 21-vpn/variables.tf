@@ -2,7 +2,7 @@ variable "instance_type"{
     default="t3.micro"
 }
 
-variable "vpc_tags"{
+variable "vpn_tags"{
     type=map(string)
     default={}
 }
