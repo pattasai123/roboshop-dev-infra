@@ -1,0 +1,12 @@
+locals {
+  ami              = data.aws_ami.joindevops.id
+  vpc_sg_id    = data.aws_ssm_parameter.vpc_sg_id.value
+
+  common_name = "${var.project}-${var.environment}-vpc"
+
+  common_tags = {
+    project   = var.project
+    env       = var.environment
+    terraform = true
+  }
+}
