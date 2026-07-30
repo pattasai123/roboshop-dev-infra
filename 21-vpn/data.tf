@@ -14,3 +14,8 @@ data "aws_ssm_parameter" "public_subnet_a" {
 data "aws_ssm_parameter" "vpn_sg_id" {
   name = "/${var.project}/${var.environment}/vpn_sg_id"
 }
+
+data "aws_route53_zone" "zone" {
+  name         = "bongu.online"
+  private_zone = false
+}
