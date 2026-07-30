@@ -1,6 +1,11 @@
-data "aws_ami" "joindevops" {
-  most_recent = true
-  owners      = ["832510228841"]
+data "aws_ami" "vpn" {
+    owners           = ["679593333241"]
+    most_recent      = true
+    
+    filter {
+        name   = "name"
+        values = ["OpenVPN Access Server Community Image-8fbe3379-*"]
+    }
 }
 
 data "aws_ssm_parameter" "public_subnet_a" {

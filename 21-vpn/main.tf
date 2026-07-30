@@ -1,4 +1,4 @@
-resource "aws_instance" "vpc" {
+resource "aws_instance" "vpn" {
   ami                    = local.ami
   instance_type          = var.instance_type
 
@@ -12,4 +12,13 @@ resource "aws_instance" "vpc" {
       Name = local.common_name
     }
   )
+}
+
+resource "aws_route53_record" "route53" {
+  zone_id = data.aws_route53_zone.zone.zone_id
+  name    = "vpn.${var.domain_name}"
+  type    = "A"
+  ttl     = 1
+  records = [aws_instance.vpn.public_ip]
+  allow_overwrite = true
 }
