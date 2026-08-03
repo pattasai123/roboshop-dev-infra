@@ -13,7 +13,6 @@ variable "domain_name"{
 
 variable "components" {
   default = {
-        /*
         catalogue = {
             priority = 10
         }
@@ -26,15 +25,12 @@ variable "components" {
         shipping = {
             priority = 40
         }
-        */
         payment = {
            priority = 50
         }
-        /*
         frontend = {
             priority = 10
         }
-        */
     }
 }
 

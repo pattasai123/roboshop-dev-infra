@@ -214,8 +214,8 @@ resource "aws_security_group_rule" "payment_to_rabbitmq" {
 }
 resource "aws_security_group_rule" "backend-alb-to-payment" {
   type                     = "ingress"
-  from_port                = 80
-  to_port                  = 80
+  from_port                = 8080
+  to_port                  = 8080
   protocol                 = "tcp"
   security_group_id        = data.aws_ssm_parameter.payment_sg_id.value
   source_security_group_id = data.aws_ssm_parameter.backend_lb_sg_id.value
