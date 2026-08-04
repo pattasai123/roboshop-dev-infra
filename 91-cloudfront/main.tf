@@ -1,7 +1,7 @@
 resource "aws_cloudfront_distribution" "main" {
   origin {
     domain_name              = "${var.project}-${var.env}.${var.domain_name}"
-    origin_access_control_id = "${var.project}-${var.env}.${var.domain_name}"
+    origin_id = "${var.project}-${var.env}.${var.domain_name}"
     custom_origin_config {
       http_port              = 80
       https_port             = 443
