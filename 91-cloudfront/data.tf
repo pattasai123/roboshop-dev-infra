@@ -10,7 +10,7 @@ data "aws_ssm_parameter" "frontend_alb_arn" {
 }
 
 data "aws_cloudfront_cache_policy" "CachingOptimized" {
-  name = "CachingOptimized"
+  name = "Managed-CachingOptimized"
 }
 
 data "aws_cloudfront_cache_policy" "CachingDisabled" {
