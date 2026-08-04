@@ -14,5 +14,5 @@ data "aws_cloudfront_cache_policy" "CachingOptimized" {
 }
 
 data "aws_cloudfront_cache_policy" "CachingDisabled" {
-  name = "CachingDisabled"
+  name = "Managed-CachingDisabled"
 }
