@@ -66,10 +66,6 @@ resource "aws_cloudfront_distribution" "main" {
   }
 }
 
-data "aws_route53_zone" "53" {
-  name = var.domain_name
-}
-
 resource "aws_route53_record" "cloudfront" {
   for_each = aws_cloudfront_distribution.main.aliases
   zone_id  = data.aws_route53_zone.zone.zone_id
